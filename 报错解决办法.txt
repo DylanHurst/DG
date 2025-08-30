@@ -11,7 +11,7 @@ git init
 git remote add origin https://github.com/DylanHurst/demo.git
 git add .
 git commit -m "first commit"
-git push -u origin good
+git push -u origin main
 ##############
 
 
