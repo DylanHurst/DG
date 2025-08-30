@@ -8,10 +8,10 @@ ssh -T git@github.com
 #可用，每一次提交，都要修改唯一的origin12，下一次可以改成origin121
 ########
 git init
-git remote add origin124 https://github.com/DylanHurst/demo.git
+git remote add origin https://github.com/DylanHurst/demo.git
 git add .
 git commit -m "first commit"
-git push -u origin main
+git push -u origin good
 ##############
 
 
