@@ -13,8 +13,13 @@ git add .
 git commit -m "first commit"
 git push -u origin main
 ##############
-
-
+#强制推送，强制推送会覆盖远程仓库的内容，请确保这是你想要的操作
+git init
+git remote add origin126 https://github.com/DylanHurst/demo.git
+git add .
+git commit -m "first commit"
+git push -f origin main
+##############
 
 git commit -m "first commit"
 
