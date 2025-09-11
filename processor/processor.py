@@ -270,7 +270,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         logger.info(f"best R1: {best_top1} at epoch {arguments['epoch']}")
 
     arguments["epoch"] = epoch
-    checkpointer.save("last", **arguments)
+
 
 def do_inference(model, test_img_loader, test_txt_loader):
 
