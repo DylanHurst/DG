@@ -210,8 +210,8 @@ def get_args2():
     parser.add_argument("--momentum", type=float, default=0.9)
     parser.add_argument("--weight_decay", type=float, default=4e-5)
     parser.add_argument("--weight_decay_bias", type=float, default=0.)
-    parser.add_argument("--alpha", type=float, default=0.9)
-    parser.add_argument("--beta", type=float, default=0.999)
+    parser.add_argument("--alpha", type=float, default=0.88)
+    parser.add_argument("--beta", type=float, default=0.9999)
     parser.add_argument("--scale", type=float, nargs="+",  default=[0,10,1])
     parser.add_argument("--argc", type=float, nargs="+", default=[0.03,0.05,0.1])
 
