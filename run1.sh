@@ -5,9 +5,9 @@ loss=GCL   #TAL,TRL,SDM
 DATASET_NAME=CUHK-PEDES
 # CUHK-PEDES ICFG-PEDES RSTPReid
 
-#noisy_file=./noiseindex/${DATASET_NAME}_${noisy_rate}.npy
+CONFIG_MODULE=1 export CONFIG_MODULE
 CUDA_VISIBLE_DEVICES=0 \
-    python demo1.py \
+    python demo.py \
     --name DG \
     --batch_size 128 \
     --root_dir $root_dir \

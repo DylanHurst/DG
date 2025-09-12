@@ -212,7 +212,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         pred_A, pred_B = get_loss(model, train_loader,args)
 
         consensus_division = pred_A + pred_B # 0,1,2
-        #！！！随机概率为1
+        #
         consensus_division[consensus_division==1] += torch.randint(0, 2, size=(((consensus_division==1)+0).sum(),))
         label_hat = consensus_division.clone()
         label_hat[consensus_division>1] = 1
@@ -270,7 +270,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         logger.info(f"best R1: {best_top1} at epoch {arguments['epoch']}")
 
     arguments["epoch"] = epoch
-
+    
 
 def do_inference(model, test_img_loader, test_txt_loader):
 
