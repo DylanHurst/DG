@@ -66,7 +66,7 @@ class DG(nn.Module):
     def compute_per_loss(self, batch,args):
         images = batch['images']
         caption_ids = batch['caption_ids']
-        # 搜索processor文件中的 model.eval(),和 with torch.no_grad()代码，就知道，在评估时候，必须关闭反向传播训练，否则内存不够用
+        # 
         image_feats, atten_i, text_feats, atten_t = self.base_model(images, caption_ids)
         i_feats = image_feats[:, 0, :].float()
         # i_feats = image_feats.float() # for CLIP ResNet visual model
@@ -74,7 +74,7 @@ class DG(nn.Module):
 
         i_tse_f = self.visul_emb_layer(image_feats, atten_i, batch['pids'])
         t_tse_f = self.texual_emb_layer(text_feats, caption_ids, atten_t, batch['pids'])
-####################################################################################################
+
         lossA, simsA = objectives.compute_per_loss(i_feats, t_feats, batch['pids'], \
                                                     tau=self.args.tau, \
                                                     margin=self.args.margin, \
@@ -89,7 +89,7 @@ class DG(nn.Module):
                                                     logit_scale=self.logit_scale,
                                                    args=args
                                                   )
-###################################################################################################        
+        
         return lossA.detach().cpu(), lossB.detach().cpu(), simsA, simsB
 
     def forward(self, batch):
