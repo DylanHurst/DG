@@ -101,7 +101,7 @@ class DG(nn.Module):
         image_feats, atten_i, text_feats, atten_t = self.base_model(images, caption_ids)
         i_feats = image_feats[:, 0, :].float()
         # i_feats = image_feats.float() # for CLIP ResNet visual model
-        t_feats = text_feats[torch.arange(text_feats.shape[0]), caption_ids.argmax(dim=-1)].float() #caption_ids.argmax(dim=-1)返回数值向量行最大值的位置，dim=-1其实表示最后一维就是列，一行的所有列就是代表行了。
+        t_feats = text_feats[torch.arange(text_feats.shape[0]), caption_ids.argmax(dim=-1)].float() #caption_ids.argmax(dim=-1)
 
         i_tse_f = self.visul_emb_layer(image_feats, atten_i, batch['pids'])
         t_tse_f = self.texual_emb_layer(text_feats, caption_ids, atten_t, batch['pids'])
