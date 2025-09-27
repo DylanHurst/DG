@@ -25,7 +25,7 @@ def get_args():
         parser.add_argument("--resume_ckpt_file", default="", help='resume from ...')
         parser.add_argument("--s", default=1, type=int)
         ######################## model general settings ########################
-        parser.add_argument("--pretrain_choice", default='ViT-B/16') # whether use pretrained model
+        parser.add_argument("--pretrain_choice", default='D:\\save\\study\\datasets_save\\Cross-Modal-Person-ReID\\data\\ViT-B-16.pt') # whether use pretrained model
         parser.add_argument("--temperature", type=float, default=0.02, help="initial temperature value, if 0, don't use temperature")
         parser.add_argument("--img_aug", default=True, action='store_true')
         parser.add_argument("--txt_aug", default=True, action='store_true')
