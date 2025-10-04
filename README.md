@@ -3,8 +3,7 @@
 ### Prerequisites
 * Pytorch 1.11
 * cuda 11.5
-* python 3.8
-* GPU NVIDIA GeForce RTX 3090
+* python 3.8+
 * sys win10
 * git version 2.47.0.windows.2
 
