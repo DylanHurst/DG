@@ -22,9 +22,9 @@ class DG(nn.Module):
 
         self.base_model, base_cfg = build_CLIP_from_openai_pretrained(args.pretrain_choice, args.img_size, args.stride_size)
         self.embed_dim = base_cfg['embed_dim']
-
+        self.metrics = Accuracy()
         self.logit_scale = torch.ones([]) * (1 / args.temperature) 
- 
+        
         self.visul_emb_layer = VisualEmbeddingLayer(ratio=args.select_ratio)
         self.texual_emb_layer = TexualEmbeddingLayer(ratio=args.select_ratio)
  
