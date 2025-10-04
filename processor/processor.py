@@ -13,6 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 from prettytable import PrettyTable
 import numpy as np
 from matplotlib import pyplot as plt
+from pytorch_lightning.utilities.memory import garbage_collection_cuda
 from pylab import xticks,yticks,np
 from sklearn.metrics import confusion_matrix
 from sklearn.mixture import GaussianMixture
@@ -203,7 +204,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         start_time = time.time()
         for meter in meters.values():
             meter.reset()
-
+        garbage_collection_cuda()
         # model.train()
         model.epoch = epoch
         # data_size = train_loader.dataset.__len__()
@@ -217,7 +218,7 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
         label_hat = consensus_division.clone()
         label_hat[consensus_division>1] = 1
         label_hat[consensus_division<=1] = 0
-
+        
         model.train()
         for n_iter, batch in enumerate(train_loader):
             batch = {k: v.to(device) for k, v in batch.items()}
