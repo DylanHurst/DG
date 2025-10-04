@@ -1,6 +1,5 @@
 '''
 Reference:
-Noisy-Correspondence Learning for Text-to-Image Person Re-identification (CVPR 2024).
 '''
 import logging
 import os
