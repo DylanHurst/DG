@@ -1,5 +1,5 @@
 from model import objectives
-
+from torchmetrics import Accuracy
 from model.DFP import TexualEmbeddingLayer, VisualEmbeddingLayer
 from model.clip_model import build_CLIP_from_openai_pretrained, convert_weights
 import torch
