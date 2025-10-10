@@ -9,7 +9,7 @@ import json
 import pickle as pkl
 import os
 import os.path as osp
-import ruamel.yaml as yaml
+import yaml
 from easydict import EasyDict as edict
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
