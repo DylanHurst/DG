@@ -122,6 +122,36 @@ class Evaluator():
         sims_bse = qfeats @ gfeats.t()
 
 
+        vq_feats, vg_feats, _, _ = self._compute_embedding_tse(model)
+        vq_feats = F.normalize(vq_feats, p=2, dim=1)  # text features
+        vg_feats = F.normalize(vg_feats, p=2, dim=1)  # image features
+        sims_tse = vq_feats @ vg_feats.t()
+
+        sims_dict = {
+            #'BGE': sims_bse,
+            #'TSE': sims_tse,
+            'DFP': (sims_bse + sims_tse) / 2
+        }
+
+        table = PrettyTable(["task", "R1", "R5", "R10", "mAP", "mINP", "rSum"])
+
+        for key in sims_dict.keys():
+            sims = sims_dict[key]
+            rs = get_metrics(sims, qids, gids, f'{key}-GCL', False)
+            table.add_row(rs)
+            if i2t_metric:
+                i2t_cmc, i2t_mAP, i2t_mINP, _ = rank(similarity=sims.t(), q_pids=gids, g_pids=qids, max_rank=10,
+                                                     get_mAP=True)
+                i2t_cmc, i2t_mAP, i2t_mINP = i2t_cmc.numpy(), i2t_mAP.numpy(), i2t_mINP.numpy()
+                table.add_row(['i2t', i2t_cmc[0], i2t_cmc[4], i2t_cmc[9], i2t_mAP, i2t_mINP])
+
+        table.custom_format["R1"] = lambda f, v: f"{v:.2f}"
+        table.custom_format["R5"] = lambda f, v: f"{v:.2f}"
+        table.custom_format["R10"] = lambda f, v: f"{v:.2f}"
+        table.custom_format["mAP"] = lambda f, v: f"{v:.2f}"
+        table.custom_format["mINP"] = lambda f, v: f"{v:.2f}"
+        table.custom_format["RSum"] = lambda f, v: f"{v:.2f}"
         self.logger.info('\n' + str(table))
 
         return rs[1]
+
